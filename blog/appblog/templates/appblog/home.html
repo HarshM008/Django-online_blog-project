@@ -1,0 +1,26 @@
+{% extends 'appblog/base.html' %}
+{% comment %} using pre-built base.html {% endcomment %}
+
+{% load static %}
+{% block content %}
+
+<div class="col-sm-10">
+<h1 class = "my-5"> Welcome to all blogs</h1>
+
+{% comment %} using for loop to display blog content insed jumbotron {% endcomment %}
+{% for post in Posts %}
+<div class ="jumbotron jumbotron-fluid jumbo-color " >
+    <div class="container">
+        <h1 class = " font-weight-bold" > {{post.title}} </h1>
+        <p class = "font-weight-light">{{post.desc}}</p>
+    </div>
+</div>
+{% endfor %}
+<br> <br>
+<h5 style="color: offwhite" > <strong> Post your blogs here. </strong> </h5>
+
+{% comment %} redirecting user towards login or signup {% endcomment %}
+<a href="{% url 'login'%}" class = "btn btn-success"> I am already a member </a> <br>
+<a href="{% url 'signup'%}" class = " my-3 btn btn-warning"> I want to register </a> 
+</div>
+{% endblock content %}

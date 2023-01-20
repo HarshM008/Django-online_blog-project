@@ -1,0 +1,44 @@
+{% extends 'appblog/base.html' %}
+{% comment %} using pre-built base.html {% endcomment %}
+
+{% load static %}
+
+{% block msg %}
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags %} class = "alert alert-{{message.tags}}
+alert-dismissible fade show" {% endif %}>
+<strong>{{message}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock msg %}
+
+
+{% block content %}
+
+<class="col-sm-10">
+<h3 class = "text-white my-5"> Enter your credentials </h3>
+
+{% comment %} using post form for getting username and password with for loop  {% endcomment %}
+<form action="" method="post" novalidate>
+{% csrf_token %}
+{% for fm in form %}
+<div
+    class = "form-group">
+    {{fm.label_tag}} {{fm}} <small class = "text-warning"> {{fm.errors|striptags}} </small> <br>
+</div>
+{% endfor %}
+
+{% comment %} login button {% endcomment %}
+<input type="submit" class = "my-1 btn btn-primary" value = "Login">
+
+{% comment %} forloop for non field errors if any  {% endcomment %}
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<p class= "alert alert-danger my-3">{{error}}</p>
+{% endfor %}
+{% endif %}
+</form>
+
+{% endblock content %}

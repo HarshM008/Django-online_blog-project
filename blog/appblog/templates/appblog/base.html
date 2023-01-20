@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% comment %} adding css from  bootstrap {% endcomment %}
+    <link rel="stylesheet" href="{% static 'appblog/css/bootstrap.css' %}"> 
+    
+    {% comment %} adding css from external stylesheet {% endcomment %}
+    <link rel="stylesheet" href="{% static 'appblog/css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %} including navbar {% endcomment %}
+    <div class = "container-fluid bg-dark">
+    {% include 'appblog/navbar.html' %} 
+    </div>
+
+    {% comment %} for msg display {% endcomment %}
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-sm-12" >
+                 {% block msg %}
+                 {% endblock msg %}
+            </div>
+       </div>
+
+{% comment %} for side display {% endcomment %}
+    <div class="row">
+        {% block side %}
+        {% endblock side %}
+
+{% comment %} for content display {% endcomment %}
+        {% block content %}
+        {% endblock content %}
+       </div> 
+    </div>
+    
+{% comment %} adding js from source {% endcomment %}
+<script> src = {%static 'appblog/js/bootstrap.js'%} </script>  
+
+</body>
+</html>
